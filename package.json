@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "body": "^5.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mariadb": "^2.5.5",
+    "parser": "^0.1.4"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "my db",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
