@@ -1,25 +1,26 @@
 const express = require ('express');
 const pool = require ('./database')
 const router = express.Router ();
-router.post('/register', async function(req,res){
+router.post('/todo/register', async function(req,res){
     try {
-      const {list}=req.body;
-      if(list==undefined){
+      const {mylist}=req.body;
+      if(mylist==undefined){
         res.json({status:500,message:"fields are necessary"})
         return;
       }
-      const myquery= 'INSERT INTO mytodotable (list) VALUES (?)';
-      const result = await pool.query(myquery,[list]);
+      const myquery= 'INSERT INTO todotable (mylist) VALUES (?)';
+      const result = await pool.query(myquery,[mylist]);
       res.status(200).json({todolist:result.insertlist});
+      console.log("inseerted");
       } 
       catch (error) {
         res.status(400).send(error.message);
       }
 
 });
-router.delete('/remove/:rollno',async function(req,res){
+router.delete('/todo/remove/:rollno',async function(req,res){
     try{
-      const myquery = 'DELETE FROM `mysql`.`mytodotable` WHERE  `no`=?;';
+      const myquery = 'DELETE FROM `todolist`.`todotable` WHERE  `no`=?;';
       const rpl = await pool.query (myquery,req.params.rollno);
       res.status(200).json({todolist1:rpl.deleteno});
     }
@@ -28,3 +29,4 @@ router.delete('/remove/:rollno',async function(req,res){
     }
   
   });
+  module.exports=router;
